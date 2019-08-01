@@ -37,7 +37,7 @@
 (defun python-args-to-docstring-rest ()
   "return docstring format(reST) for the python arguments in yas-text"
   (let* ((indent (make-string (current-column) 32))
-		 (args (python-split-args yas-text))
+		 (args (python-split-args (replace-regexp-in-string  "[\n\|[:space:]]" "" yas-text)))
          (format-arg (lambda(arg)
                        (concat indent ":param " (nth 0 arg) ":")))
          (formatted-params (mapconcat format-arg args "\n"))
@@ -45,6 +45,13 @@
     (unless (string= formatted-params "")
       (mapconcat 'identity
                  (list "" formatted-params formatted-ret) "\n"))))
+
+(defun python-args-parse-current-kill-insert()
+  "pretent the current-kill as yas-text, parse and insert to point"
+  (interactive)
+  (let* ((yas-text (substring-no-properties (current-kill 0)))
+		 (s (python-args-to-docstring-rest)))
+	(insert s)))
 
 
 (add-hook 'python-mode-hook
