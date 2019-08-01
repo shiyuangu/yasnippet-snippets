@@ -34,6 +34,18 @@
                        "\nReturns\n-------" formatted-ret)
                  "\n"))))
 
+(defun python-args-to-docstring-rest ()
+  "return docstring format(reST) for the python arguments in yas-text"
+  (let* ((indent (make-string (current-column) 32))
+		 (args (python-split-args yas-text))
+         (format-arg (lambda(arg)
+                       (concat indent ":param " (nth 0 arg) ":")))
+         (formatted-params (mapconcat format-arg args "\n"))
+         (formatted-ret (concat indent ":return: ")))
+    (unless (string= formatted-params "")
+      (mapconcat 'identity
+                 (list "" formatted-params formatted-ret) "\n"))))
+
 
 (add-hook 'python-mode-hook
           '(lambda () (set (make-local-variable 'yas-indent-line) 'fixed)))
