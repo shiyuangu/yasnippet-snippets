@@ -45,7 +45,7 @@
     (unless (string= formatted-params "")
       (mapconcat 'identity
                  (list "" formatted-params formatted-ret) "\n"))))
-
+(defalias 'sgu-python-args-parse-current-kill-insert 'python-args-parse-current-kill-insert)
 (defun python-args-parse-current-kill-insert()
   "pretent the current-kill as yas-text, parse and insert to point"
   (interactive)
