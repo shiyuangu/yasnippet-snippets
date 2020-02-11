@@ -2,4 +2,4 @@
 # name: embed
 # key: embed
 # --
-from IPython import embed; embed()
+from IPython import embed; embed() # debug only 
