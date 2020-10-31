@@ -45,6 +45,9 @@
 ;;;###autoload
 (defun yasnippet-snippets-initialize ()
   "Load the `yasnippet-snippets' snippets directory."
+  ;; NOTE: we add the symbol `yasnippet-snippets-dir' rather than its
+  ;; value, so that yasnippet will automatically find the directory
+  ;; after this package is updated (i.e., moves directory).
   (add-to-list 'yas-snippet-dirs 'yasnippet-snippets-dir t)
   (yas-load-directory yasnippet-snippets-dir t))
 
@@ -57,6 +60,14 @@ customizable variable used for a snippet expansion.
 
 See Info node `(elisp)Customization Types'."
   :group 'yasnippet)
+
+(defun yasnippet-snippets--fixed-indent ()
+  "Set `yas-indent-line' to `fixed'."
+  (set (make-local-variable 'yas-indent-line) 'fixed))
+
+(defun yasnippet-snippets--no-indent ()
+  "Set `yas-indent-line' to nil."
+  (set (make-local-variable 'yas-indent-line) nil))
 
 ;;;###autoload
 (eval-after-load 'yasnippet
