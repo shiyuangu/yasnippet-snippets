@@ -39,7 +39,8 @@
   (let* ((indent (make-string (current-column) 32))
 		 (args (python-split-args (replace-regexp-in-string  "[\n\|[:space:]]" "" yas-text)))
          (format-arg (lambda(arg)
-                       (concat indent ":param " (nth 0 arg) ":")))
+                       (concat indent ":param " (nth 0 arg) ":"
+							   (if (nth 1 arg) (concat " default to " (nth 1 arg) )))))
          (formatted-params (mapconcat format-arg args "\n"))
          (formatted-ret (concat indent ":return: ")))
     (unless (string= formatted-params "")
