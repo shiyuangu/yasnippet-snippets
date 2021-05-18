@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: psql
+# key: ps_
+# --
+#+begin_src shell :results output verbatim 
+SNAME=$0
+echo " " | psql  "sslmode=require host=\${SNAME}.postgres.database.azure.com user=journey@\${SNAME} dbname=" 
+#+end_src
