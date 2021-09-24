@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: js
+# key: js_
+# --
+#+begin_src js :cmd /usr/local/bin/node :results output
+// Cf: http://rwx.io/posts/org-with-babel-node-updated/
+var m = require("/path/to/node_modules/m");
+const \{ obj \} = m;
+$0
+#+end_src

@@ -2,6 +2,7 @@
 # name: shell
 # key: sh_
 # --
-#+begin_src shell :results value verbatim 
+#+begin_src shell :results value verbatim
+# Cf: https://orgmode.org/manual/Working-with-Source-Code.html#Working-with-Source-Code
 $0
 #+end_src
