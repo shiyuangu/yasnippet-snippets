@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: flask_new_resource
+# key: flask_new_res
+# group: flask
+# --
+from flask_apispec import MethodResource as Resource
+from flask_apispec import use_kwargs, marshal_with, doc
+from flask import jsonify, g, request, abort, current_app
+from .Schema import XXXSchema
+
+class ${1:Service}(Resource):
+
+    @use_kwargs(XXXSchema(), location="${2:$$(yas-choose-value '("json" "query" "form" "headers" "cookie" "files"))}")
+    @doc(description="")
+    def post(self, *args, **kwargs):
+        $0
+        return {}, 200

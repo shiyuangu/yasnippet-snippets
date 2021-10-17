@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: flask_bp_exception
+# key: flask_bp_ex
+# group: flask
+# --
+@${1:bp_name}(Exception)
+def handle_exception(e):
+    """
+    always return json as response. 
+    """
+    if isinstance(e, HTTPException):
+        response = e.get_response()
+        # replace the body with JSON
+        response.data = json.dumps({
+            "code": e.code,
+            "name": e.name,
+            "description": e.description,
+        })
+        response.content_type = "application/json"
+        return response
+    else:
+        exc_info = sys.exc_info()
+        logger.exception(exc_info)
+        # description becomes 'message' field in the json 
+        return abort(500, description=${2:""})

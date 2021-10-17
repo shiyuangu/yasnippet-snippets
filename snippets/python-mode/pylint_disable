@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: pylint_disable
+# key: pylint_disable
+# group: pylint
+# --
+# pylint: disable=$0 (code or short-name)

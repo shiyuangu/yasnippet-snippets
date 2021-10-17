@@ -5,5 +5,6 @@
 #+begin_src python :python /Users/shgu/.pyenv/shims/python :results output
 # Cf: https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html
 # Cf: https://orgmode.org/manual/Working-with-Source-Code.html#Working-with-Source-Code
+# See C-h f org-babel-execution:python
 $0
 #+end_src
