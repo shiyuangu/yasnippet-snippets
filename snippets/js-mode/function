@@ -3,5 +3,8 @@
 # key: fd_
 # --
 function ${1:name}(${2:arg}) {
-         $0
-}
+  /*
+    @param :
+  */
+  $0
+} // end $1
