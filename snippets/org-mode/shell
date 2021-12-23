@@ -5,18 +5,22 @@
 Choose the following $0
 #+begin_src shell :results value verbatim
 # Cf: https://orgmode.org/manual/Working-with-Source-Code.html#Working-with-Source-Code
+# Also see myblog emacs notes
 #+end_src
 
 #+begin_src shell :session s1 :results value verbatim
 # zsh with color session (the session buffer name is s1)
 # Without changing theme, the command will hang (when occurs, Use Ctrl+g to interrupt)
 # Cf: https://emacs.stackexchange.com/questions/48382/org-mode-babel-and-zsh-getting-shell-sessions-to-work
+# Also see myblog emacs notes
 export ZSH_THEME=bira && source $ZSH/oh-my-zsh.sh
 echo \${TERM}
 #+end_src
 
 #+begin_src bash :session s2 :results value verbatim
 # bash with conda and databricks  but no color prompt (session buffer name is s2)
+# Cf: https://emacs.stackexchange.com/questions/48382/org-mode-babel-and-zsh-getting-shell-sessions-to-work
+# Also see myblog emacs notes
 export PATH=/Users/shgu/.local/bin:/Users/shgu/miniconda3/envs/dev/bin:/Users/shgu/miniconda3/condabin:/Users/shgu/bin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools
 eval `databricks_helpers.py setup-env --profile cccm-dev`
 #+end_src
