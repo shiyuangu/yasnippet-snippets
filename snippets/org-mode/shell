@@ -22,5 +22,5 @@ echo \${TERM}
 # Cf: https://emacs.stackexchange.com/questions/48382/org-mode-babel-and-zsh-getting-shell-sessions-to-work
 # Also see myblog emacs notes
 export PATH=/Users/shgu/.local/bin:/Users/shgu/miniconda3/envs/dev/bin:/Users/shgu/miniconda3/condabin:/Users/shgu/bin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools
-eval `databricks_helpers.py setup-env --profile cccm-dev`
+eval \`databricks_helpers.py setup-env --profile cccm-dev\`
 #+end_src
