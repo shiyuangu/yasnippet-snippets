@@ -1,0 +1,54 @@
+# -*- mode: snippet -*-
+# name: databricks_new_job
+# key: db_new_job_
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+# to use this templates: do: databricks jobs create --version 2.1 --json-file <(python cli/bin/print-yaml.py new-job.yml|yq -o=json) --profile cccm-dev
+name: ${1:$(car (last (split-string yas-text "/")))} $0
+tasks:
+  - task_key: generate-result
+    description: generate-results
+    new_cluster:
+      # for cluster type https://azure.microsoft.com/en-us/pricing/details/databricks/
+      spark_version: ${4:10.4.x-cpu-ml-scala2.12$(yas-choose-value '("10.4.x-cpu-ml-scala2.12" "10.4.x-scala2.12"))}
+      driver_node_type_id: ${5:Standard_DS14_v2 #16vCPU $(yas-choose-value '("Standard_DS3_v2 #4vCPU 14G" "Standard_DS14_v2 #16vCPU 112G" "Standard_D64s_v3 #64vCPU 256G"))}
+      node_type_id: ${6:Standard_DS64_v3 #64vCPU 256G $(yas-choose-value '("Standard_DS3_v2 #4vCPU 14G" "Standard_DS14_v2 #16vCPU 112G" "Standard_D64s_v3 #64vCPU 256G"))} 
+      spark_conf:
+        spark.sql.autoBroadcastJoinThreshold: "-1"
+        spark.executor.memoryOverhead: 1g
+        spark.sql.adaptive.enabled: "false"
+        spark.driver.maxResultSize: "0"
+        spark.rdd.compress: "true"
+        spark.sql.execution.arrow.pyspark.enabled: "true"
+        spark.sql.adaptive.shuffle.targetPostShuffleInputSize: "67108864"
+        spark.sql.shuffle.partitions: "800"
+        # to find the secrets, do: databricks --profile cccm-dev  secrets 
+        fs.azure.account.key.${2:customeraidev$(yas-choose-value '("customeraidev" "offerrankingaieast2"))}.blob.core.windows.net: "{{secrets/storageaccount/$2}}"
+      spark_env_vars:
+        CLUSTER_TYPE: databricks
+        PYSPARK_PYTHON: /databricks/python3/bin/python3
+      azure_attributes:
+        availability: SPOT_WITH_FALLBACK_AZURE
+      num_workers: ${3:3}
+    notebook_task:
+      notebook_path: /Users/shgu@adobe.com/${1:name}
+    timeout_seconds: 86400
+    max_retries: 0
+    min_retry_interval_millis: 2000
+    retry_on_timeout: false
+    libraries: !include ${7:libraries.yml$(yas-choose-value '("libraries.yml" "libraries-ml.yml"))}
+job_clusters: null
+email_notifications:
+  on_start:
+    - shgu@adobe.com
+  on_success:
+    - shgu@adobe.com
+  on_failure:
+    - shgu@adobe.com
+  no_alert_for_skipped_runs: false
+timeout_seconds: 86400
+max_concurrent_runs: 10
+format: MULTI_TASK
+access_control_list:
+  - user_name: shgu@adobe.com
+    permission_level: IS_OWNER
