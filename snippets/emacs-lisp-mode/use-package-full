@@ -1,0 +1,33 @@
+# key: use_package_full_
+# name: use-package-full
+# --
+(use-package ${1:name}
+  :ensure t
+  ;; load-path can be relative to ~/.emacs.d or absolute path 
+  :load-path "site-lisp/hydra"
+  :after (dependent-package1 dependent-2)
+  :commands (cmd1 cmd2)
+  :mode (("\\.html\\'" . $1)  ("\\.js\\'" . $1))
+  :hook ((js-mode . func1)
+         (rjsx-mode . func2))
+  ;; Multiple uses of :map may be specified. Any binding occurring before the first use of :map are applied to the global keymap:
+  :bind (("C-c t" . term)
+         :map term-mode-map
+         ("M-p" . term-send-up)
+         ("M-n" . term-send-down)
+         :map term-raw-map
+         ("M-o" . other-window)
+         ("M-p" . term-send-up)
+         ("M-n" . term-send-down))
+  :init
+  ;; (add-hook 'prog-mode-hook #'ace-jump-mode)
+  (sexp1)
+  (sexp2)
+  :config
+  ;;(setq web-mode-code-indent-offset 2)
+  (sexp1)
+  (sexp2)
+  :custom
+  (comint-buffer-maximum-size 20000 "Increase comint buffer size.")
+  ;; (comint-prompt-read-only t "Make the prompt read only.")
+  )
