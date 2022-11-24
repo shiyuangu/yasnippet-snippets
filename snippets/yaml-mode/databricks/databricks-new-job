@@ -3,7 +3,8 @@
 # key: db_new_job_
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
-# to use this templates: do: databricks jobs create --version 2.1 --json-file <(python cli/bin/print-yaml.py new-job.yml|yq -o=json) --profile cccm-dev
+# to use this templates: do:
+#    NBA_CONFIG_DIR=$PWD/ccx-dme databricks --profile cccm-dev jobs create --version 2.1 --json-file <(python cli/bin/print-yaml.py /path/to/thisfile.yml|yq -o=json) 
 name: ${1:$(car (last (split-string yas-text "/")))} $0
 tasks:
   - task_key: generate-result
@@ -32,6 +33,8 @@ tasks:
       num_workers: ${3:3}
     notebook_task:
       notebook_path: /Users/shgu@adobe.com/${1:name}
+      base_parameters:
+        ${8:sample_rate: 1.0}
     timeout_seconds: 86400
     max_retries: 0
     min_retry_interval_millis: 2000
