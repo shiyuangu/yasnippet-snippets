@@ -4,7 +4,8 @@
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # --
 # to use this templates: do:
-#    NBA_CONFIG_DIR=$PWD/ccx-dme databricks --profile cccm-dev jobs create --version 2.1 --json-file <(python cli/bin/print-yaml.py /path/to/thisfile.yml|yq -o=json) 
+# export  NBA_CONFIG_DIR=$PWD/ccx-dme
+# databricks --profile cccm-dev jobs create --version 2.1 --json-file <(python cli/bin/print-yaml.py `(buffer-file-name)` |yq -o=json) 
 name: ${1:$(car (last (split-string yas-text "/")))} $0
 tasks:
   - task_key: generate-result
