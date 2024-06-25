@@ -3,12 +3,12 @@
 # key: sh_
 # --
 Choose the following $0
-#+begin_src shell :results value verbatim
+#+begin_src shell :results output verbatim
 # Cf: https://orgmode.org/manual/Working-with-Source-Code.html#Working-with-Source-Code
 # Also see myblog emacs notes
 #+end_src
 
-#+begin_src shell :session s1 :results value verbatim
+#+begin_src shell :session s1 :results output verbatim
 # zsh with color session (the session buffer name is s1)
 # Without changing theme, the command will hang (when occurs, Use Ctrl+g to interrupt)
 # Cf: https://emacs.stackexchange.com/questions/48382/org-mode-babel-and-zsh-getting-shell-sessions-to-work
@@ -17,7 +17,7 @@ export ZSH_THEME=bira && source $ZSH/oh-my-zsh.sh
 echo \${TERM}
 #+end_src
 
-#+begin_src bash :session s2 :results value verbatim
+#+begin_src bash :session s2 :results output verbatim
 # bash with conda and databricks  but no color prompt (session buffer name is s2)
 # Cf: https://emacs.stackexchange.com/questions/48382/org-mode-babel-and-zsh-getting-shell-sessions-to-work
 # Also see myblog emacs notes
